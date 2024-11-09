@@ -1,4 +1,4 @@
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut, TwitterAuthProvider } from "firebase/auth";
 import auth from "../firebase/firebase.init";
 import { useState } from "react";
 
@@ -26,6 +26,11 @@ const Login = () => {
             .catch(err => console.log(err))
     }
 
+    const handleTwitterSignIn = () => {
+        const twitterProvider = new TwitterAuthProvider();
+        console.log('log in by twitter');
+    }
+
     const handlelogOut = () => {
         signOut(auth)
             .then(() => {
@@ -34,6 +39,7 @@ const Login = () => {
             })
             .catch(err => console.log(err))
     }
+
     return (
         <div>
             {
@@ -43,6 +49,7 @@ const Login = () => {
                     <>
                         <button onClick={handleGoogleSignIn}>login with google</button>
                         <button onClick={handleGithubSignIn}>login with Github</button>
+                        <button onClick={handleTwitterSignIn}>login with Twitter</button>
                     </>
             }
             {
