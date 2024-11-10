@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../firebase.init";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -12,7 +12,6 @@ const SignUp = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const terms = e.target.terms.checked;
-        console.log(terms);
 
         setErrorMessage("");
         setSuccessMessage(false)
@@ -27,13 +26,20 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setSuccessMessage(true)
-                console.log(result.user)
+                console.log(result.user);
+
+                //Email verification
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        console.log("Verification email send");
+                    })
             })
             .catch(err => {
                 setErrorMessage(err.message)
                 setSuccessMessage(false)
             })
     }
+
     return (
         <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
             <h1 className="text-3xl pl-5  font-bold">Sign Up now!</h1>
