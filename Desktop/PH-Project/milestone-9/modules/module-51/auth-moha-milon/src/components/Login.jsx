@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
     const handleLogin = e => {
@@ -7,6 +9,8 @@ const Login = () => {
         const password = e.target.password.value;
         console.log(email, password);
     }
+    const { name } = useContext(AuthContext)
+    console.log(name);
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col ">
