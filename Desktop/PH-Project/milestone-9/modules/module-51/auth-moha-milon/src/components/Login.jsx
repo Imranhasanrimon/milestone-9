@@ -13,10 +13,12 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result);
+                e.target.reset()
             })
             .catch(err => {
                 console.log(err);
             })
+
     }
 
     return (
