@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase.init";
 const Register = () => {
     const { createUser } = useContext(AuthContext);
     const goHome = useNavigate();
@@ -21,9 +23,21 @@ const Register = () => {
                 console.log(err);
             })
     }
+
+    const provider = new GoogleAuthProvider();
     const handleGoogle = () => {
-        console.log('hello google');
+        signInWithPopup(auth, provider)
+            .then(user => console.log(user))
+            .catch(err => console.log(err))
     }
+
+    const githubProvider = new GithubAuthProvider()
+    const handleGithub = () => {
+        signInWithPopup(auth, githubProvider)
+            .then(user => console.log(user))
+            .catch(err => console.log(err))
+    }
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col ">
@@ -55,6 +69,9 @@ const Register = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button onClick={handleGoogle} type="button" className="btn btn-success">Sign Up with Google</button>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button onClick={handleGithub} type="button" className="btn btn-success">Sign Up with Github</button>
                         </div>
                         <p>Already have account? <Link to="/login" className="text-lg font-semibold underline">Login</Link></p>
                     </form>
