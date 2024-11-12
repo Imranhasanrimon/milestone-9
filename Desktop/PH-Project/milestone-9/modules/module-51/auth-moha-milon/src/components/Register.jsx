@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 const Register = () => {
     const { createUser } = useContext(AuthContext);
-
+    const goHome = useNavigate();
     const handleRegister = e => {
         e.preventDefault();
 
@@ -14,10 +14,15 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+                e.target.reset()
+                goHome("/")
             })
             .catch(err => {
                 console.log(err);
             })
+    }
+    const handleGoogle = () => {
+        console.log('hello google');
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -47,6 +52,9 @@ const Register = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button onClick={handleGoogle} type="button" className="btn btn-success">Sign Up with Google</button>
                         </div>
                         <p>Already have account? <Link to="/login" className="text-lg font-semibold underline">Login</Link></p>
                     </form>
