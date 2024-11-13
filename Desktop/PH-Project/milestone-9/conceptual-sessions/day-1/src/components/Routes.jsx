@@ -4,16 +4,19 @@ import MainLayout from "./MainLayout";
 const routes = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout></MainLayout>
+        element: <MainLayout></MainLayout>,
+        children: [
+            {
+                path: "/",
+                element: <h1>Home page</h1>
+            },
+            {
+                path: "/about",
+                element: <h1>About page</h1>
+            }
+        ]
     },
-    {
-        path: "/",
-        element: <h1>Home page</h1>
-    },
-    {
-        path: "/about",
-        element: <h1>About page</h1>
-    }
+
 ],
     {
         future: {

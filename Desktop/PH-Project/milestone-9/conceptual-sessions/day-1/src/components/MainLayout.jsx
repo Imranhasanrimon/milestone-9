@@ -5,7 +5,7 @@ const MainLayout = () => {
         <div>
             <div style={{ background: 'pink', padding: '20px', display: 'flex', gap: '30px' }}>
                 <NavLink to="/">Home</NavLink>
-                <h1>About</h1>
+                <NavLink to="/about">About</NavLink>
             </div>
             <Outlet></Outlet>
         </div>
