@@ -1,8 +1,9 @@
+import SocialLogin from "./SocialLogin";
 
 const RightNavbar = () => {
     return (
         <div>
-            right navbar
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
