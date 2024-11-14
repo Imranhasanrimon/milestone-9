@@ -9,10 +9,10 @@ const LeftNavbar = () => {
     }, [])
     return (
         <div>
-            <h3>All Categories (8)</h3>
-            <div>
+            <h3 className="font-semibold">All Categories ({categories.length})</h3>
+            <div className="flex flex-col gap-3 mt-4">
                 {
-                    categories.map(category => <button key={category.category_id}>{category.category_name}</button>)
+                    categories.map(category => <button className="btn" key={category.category_id}>{category.category_name}</button>)
                 }
             </div>
         </div>
